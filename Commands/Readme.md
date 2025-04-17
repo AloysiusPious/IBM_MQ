@@ -148,3 +148,264 @@ Sure, here are the commands translated to English with examples:
    # ReplyToQ : ' ' - This field displays the 48-character name of the reply-to queue. If the name is less than 48 characters, the missing characters are replaced with spaces on the right. Such data is called blank-padded and is often used in WebSphere MQ structures. In this example, this field in the message descriptor is empty.
    # ReplyToQMgr : 'host1/qm1 ' - This field contains the 48-character blank-padded name of the reply-to queue manager, automatically filled by the queue manager when placing the message.
    ```
+Message Content
+Length: 20 bytes
+
+Binary and Text Representation:
+
+00000000: 5265 6462 6F6F 6B20 7465 7374 206D 6573   'Redbook test mes'
+00000010: 7361 6765                     'sage '
+The message content is displayed in both its binary form (on the left) and its text representation (on the right).
+
+Defining and Using Local Queue Aliases
+Start an interactive MQSC session:
+
+bash
+runmqsc
+Define a queue alias for persistent messages:
+
+bash
+DEFINE QALIAS('queue1.persistent') TARGQ('queue1') DEFPSIST(YES) +
+DESCR('Redbook example alias to queue1: For persistent messages')
+Example: Suppose you need a queue alias for an application sending guaranteed persistent messages. You can define queue1.persistent pointing to queue1.
+
+Check the attributes of the queue alias:
+
+bash
+DISPLAY QALIAS('queue1.persistent') TARGQ DEFPSIST DESCR
+Example Output:
+
+QALIAS(queue1.persistent) TARGQ(queue1) DEFPSIST(YES) DESCR('Redbook example alias to queue1')
+Send test messages via the alias using the sample program:
+
+bash
+amqsput queue1.persistent
+Example: Running this command will prompt message input; an empty line exits the program.
+
+Stopping and Restarting the Queue Manager
+Graceful shutdown of the queue manager:
+
+bash
+endmqm -w host1/qm1
+Immediate shutdown:
+
+bash
+endmqm -i host1/qm1
+Restart on Windows:
+
+bash
+amqmdain qmgr start
+Restart on UNIX:
+
+bash
+strmqm
+Example: If your queue manager qm1 encounters a failure, you may use strmqm to restart it on UNIX.
+
+Retrieving Messages from a Queue (Messages are Deleted)
+Extract messages from the default queue manager:
+
+bash
+amqsget queue1
+Example: Running this command retrieves all messages from queue1 and removes them.
+
+Deleting a Queue Alias
+Start an interactive MQSC session:
+
+bash
+runmqsc
+Delete a queue alias object:
+
+bash
+DELETE QALIAS('queue1.persistent')
+Example Output: After deletion, the alias will no longer appear in:
+
+bash
+DISPLAY QUEUE(*)
+DISPLAY QALIAS(*)
+Creating an Alias for a Queue Manager Using a Remote Queue Object
+Define an alias for remote queue manager host1/qm1:
+
+bash
+DEFINE QREMOTE('host1/qm1.alias') RNAME('') RQMNAME('host1/qm1') +
+DESCR('Redbook example queue manager alias to host1/qm1')
+Example: If applications need a logical alias instead of the actual queue manager name, use host1/qm1.alias to refer to host1/qm1.
+
+Check attributes of the remote queue alias:
+
+bash
+DISPLAY QREMOTE('host1/qm1.alias') RNAME RQMNAME DESCR
+
+To add multiple messages to a queue, use:
+
+bash
+amqsput queue1 host1/qm1 8208 0 host1/qm1.alias
+Parameters explained:
+
+queue1 – Queue name.
+
+host1/qm1 – The queue manager name to connect to for message sending.
+
+8208 – Decimal code for request parameters passed during MQOPEN. This opens the message queue for writing. If the queue manager is shutting down, further attempts fail.
+
+0 – Code defining MQCLOSE without parameters (not relevant here).
+
+host1/qm1.alias – Queue manager alias used in MQOPEN. Instead of referring directly to the queue manager, it uses a previously defined alias, which is resolved to host1/qm1.
+
+Example: If a queue queue1 is hosted on host1/qm1, using an alias like host1/qm1.alias ensures applications remain flexible without hardcoding direct connections.
+
+Stopping and Deleting a Queue Manager
+Graceful shutdown:
+
+bash
+endmqm -w host1/qm1
+Immediate shutdown:
+
+bash
+endmqm -i host1/qm1
+Permanent deletion of the queue manager:
+
+bash
+dltmqm host1/qm1
+Creating and Starting a Queue Manager for a Service
+Create a queue manager called host1/echo.hub:
+
+bash
+crtmqm host1/echo.hub
+Start the queue manager:
+
+Windows:
+
+bash
+amqmdain qmgr start host1/echo.hub
+Unix/Linux:
+
+bash
+strmqm host1/echo.hub
+Create a local queue to host the echo service:
+
+bash
+DEFINE QLOCAL('echo') + DESCR('Queue hosting the echo service')
+Example: This queue will hold requests and return responses with the same content.
+
+Manually Defining a Reply Queue
+Start an interactive MQSC session:
+
+bash
+runmqsc host1/echo.hub
+Create a manually defined reply queue:
+
+bash
+DEFINE QLOCAL('echo.replies.manual') + DESCR('Manually defined reply-to queue for echo service')
+END
+Example: Applications sending requests can use echo.replies.manual as the reply queue to receive responses.
+
+Sending and Inspecting a Test Request
+bash
+amqsreq echo host1/echo.hub echo.replies.manual
+Parameters:
+
+echo – Service queue (no active services processing yet).
+
+host1/echo.hub – Queue manager to connect to.
+
+echo.replies.manual – The reply queue name.
+
+Triggering a Service When Messages Arrive
+Set up an initiation queue:
+
+bash
+DEFINE QLOCAL('echo.initq') + DESCR('Initiation queue for triggering the echo service')
+Activate first-message triggering:
+
+bash
+ALTER QLOCAL('echo') + TRIGGER TRIGTYPE(FIRST) INITQ('echo.initq') + PROCESS('amqsech')
+Start the WebSphere MQ trigger monitor:
+
+bash
+runmqtrm -m host1/echo.hub -q echo.initq
+Example: When a message arrives in echo, a trigger message is generated in echo.initq, starting the process amqsech.
+
+Sending an Echo Request via a Temporary Dynamic Queue
+Create a model queue for dynamic replies:
+
+bash
+DEFINE QMODEL('echo.replies.tempdyn') + DESCR('Temporary dynamic reply-to queues for echo service')
+Send a request:
+
+bash
+amqsreq echo host1/echo.hub echo.replies.tempdyn
+Check dynamically created queues:
+
+bash
+DISPLAY QL('AMQ.*') DEFTYPE DESCR
+Example: This method automatically generates temporary queues for receiving responses, optimizing queue management.
+
+Running a Broker on the Queue Manager
+Enable and start the broker service:
+
+bash
+ALTER SERVICE('SYSTEM.BROKER') CONTROL(QMGR)
+START SERVICE('SYSTEM.BROKER')
+Example: This allows message processing automation.
+
+Setting Up a Listener and a Server Connection Channel
+Define and start a TCP listener:
+
+bash
+DEFINE LISTENER('LISTENER.TCP') + TRPTYPE(TCP) PORT(9001) CONTROL(QMGR) +
+DESCR('TCP/IP Listener for queue manager')
+START LISTENER('LISTENER.TCP')
+Create a server connection channel:
+
+bash
+DEFINE CHANNEL('all.clients') CHLTYPE(SVRCONN) MCAUSER('username')
+Example: Applications connect using this channel.
+
+Sending Messages Using Environment Variables
+Set up the MQSERVER variable:
+
+bash
+MQSERVER=all.clients/TCP/'host1.example.com(9001)'
+export MQSERVER
+Send messages:
+
+bash
+amqsputc queue1 host1/echo.hub
+Retrieve messages:
+
+bash
+amqsgetc queue1 host1/echo.hub
+Example: MQSERVER simplifies queue manager connectivity.
+
+Setting Up a Dead Letter Queue
+Create and assign a dead-letter queue:
+
+bash
+DEFINE QLOCAL('dead.letters')
+ALTER QMGR DEADQ('dead.letters')
+Example: Unprocessed messages are redirected to dead.letters.
+
+Configuring Message Channels
+Create a sender-receiver channel:
+
+bash
+DEFINE CHANNEL('to.host1/echo.hub') CHLTYPE(RCVR)
+DEFINE CHANNEL('to.host1/echo.hub') CHLTYPE(SDR) +
+CONNAME('host1.example.com(9001)') XMITQ('host1/echo.hub')
+Ping the channel:
+
+bash
+PING CHANNEL('to.host1/echo.hub')
+Example: If connectivity fails, check hostnames, ports, and listener status.
+
+Triggering a Communication Channel
+Set up automatic triggering:
+
+bash
+ALTER QLOCAL('host1/echo.hub') TRIGGER TRIGTYPE(FIRST) +
+TRIGDATA('to.host1/echo.hub') INITQ('SYSTEM.CHANNEL.INITQ')
+Send a test message to another queue manager:
+
+bash
+amqsput queue1 host2/spoke 8208 0 host1/echo.hub
+Example: Messages flow from one queue manager to another dynamically.
