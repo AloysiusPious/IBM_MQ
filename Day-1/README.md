@@ -1,4 +1,5 @@
-📅 Day 1: Setting Up Your First Queue Manager
+📘 IBM MQ Administration Practice — Day 1
+🗓️ Day 1: Setting Up Your First Queue Manager
 🎯 Objective
 Establish a foundational IBM MQ environment by creating a queue manager, defining a local queue, and verifying message operations.​
 
@@ -8,7 +9,6 @@ IBM MQ 9.4.0.10 installed on CentOS
 User with mqm group privileges
 
 Environment variables configured using setmqenv​
-IBM - United States
 
 ✅ Steps
 1. Create a Queue Manager
@@ -17,12 +17,6 @@ Copy
 Edit
 crtmqm -q QM1
 -q enables the queue manager to start automatically upon system boot.​
-IBM - United States
-+7
-IBM - United States
-+7
-IBM - United States
-+7
 
 2. Start the Queue Manager
 bash
@@ -68,6 +62,10 @@ Queue Manager (QM1): Central component managing queues and channels.
 Local Queue (TEST.QUEUE): Stores messages for applications to retrieve.
 
 amqsput and amqsget: Sample programs to put and get messages, useful for testing.​
+Amazon Web Services, Inc.
++1
+IBM - United States
++1
 
 📚 Additional Resources
 IBM MQ 9.4 Quick Start Guide
