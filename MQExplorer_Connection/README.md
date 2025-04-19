@@ -32,13 +32,14 @@ Use the `crtmqm` command followed by the desired Queue Manager name to create a 
 
 ```bash
 crtmqm TESTQM2
+```
 ▶️ Starting the Queue Manager
 After creation, start the Queue Manager using the strmqm command:
 
-bash
-Copy
-Edit
+```bash
+
 strmqm TESTQM2
+```
 ➕ Adding to MQ Explorer
 To manage a command-line created Queue Manager within MQ Explorer:
 
@@ -69,10 +70,10 @@ Provide a name (e.g., MY.SVRCONN), set Transport type to TCP, and specify a Port
 Click OK.
 
 Using Command Line:
-bash
-Copy
-Edit
+```bash
+
 DEFINE CHANNEL(MY.SVRCONN) CHLTYPE(SVRCONN) TRPTYPE(TCP) PORT(1414)
+```
 📡 Creating and Starting Listener
 A Listener is a process that listens for incoming connection requests on a specific network port and associates them with the Queue Manager.
 
@@ -88,11 +89,10 @@ Provide a name (e.g., LISTENER1), choose TCP as transport type, and set the Port
 Click OK to create and start the Listener.
 
 Using Command Line:
-bash
-Copy
-Edit
+```bash
 DEFINE LISTENER(LISTENER1) TRPTYPE(TCP) PORT(1414)
 START LISTENER(LISTENER1)
+```
 4. Local vs. Remote Connections
 Understanding the difference between local and remote connections is crucial for configuring MQ correctly.
 
