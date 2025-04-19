@@ -1,74 +1,59 @@
-#📘 IBM MQ Administration Practice — Day 1
-🗓️ Day 1: Setting Up Your First Queue Manager
+# 🗓️ Day 1: Setting Up Your First Queue Manager
 🎯 Objective
 Establish a foundational IBM MQ environment by creating a queue manager, defining a local queue, and verifying message operations.​
 
-🛠️ Prerequisites
+## 🛠️ Prerequisites
 IBM MQ 9.4.0.10 installed on CentOS
 
 User with mqm group privileges
 
 Environment variables configured using setmqenv​
 
-✅ Steps
-1. Create a Queue Manager
-bash
-Copy
-Edit
-crtmqm -q QM1
+### ✅ Steps
+## 1. Create a Queue Manager
 -q enables the queue manager to start automatically upon system boot.​
+```bash
+crtmqm -q QM1
+```
 
-2. Start the Queue Manager
-bash
-Copy
-Edit
+## 2. Start the Queue Manager
+```bash
 strmqm QM1
-3. Define a Local Queue
-bash
-Copy
-Edit
+```
+## 3. Define a Local Queue
+``` bash
 runmqsc QM1
 DEFINE QLOCAL('TEST.QUEUE')
 END
-4. Display the Queue
-bash
-Copy
-Edit
+```
+##4. Display the Queue
+``bash
 runmqsc QM1
 DISPLAY QLOCAL('TEST.QUEUE')
-END
-5. Send a Test Message
-bash
-Copy
-Edit
+```
+## 4. Send a Test Message
+```bash
 echo "Hello MQ" | amqsput TEST.QUEUE QM1
+```
 After executing, type your message and press Enter. To end input, press Ctrl+D.​
 
-6. Retrieve the Message
-bash
-Copy
-Edit
+##5. Retrieve the Message
+```bash
 amqsget TEST.QUEUE QM1
+```
 This command reads the message from the queue.​
 
-7. Stop the Queue Manager
-bash
-Copy
-Edit
+##6. Stop the Queue Manager
+```bash
 endmqm QM1
-📘 Explanation
-Queue Manager (QM1): Central component managing queues and channels.
+```
+###📘 Explanation
+#Queue Manager (QM1): Central component managing queues and channels.
+#Local Queue (TEST.QUEUE): Stores messages for applications to retrieve.
+#amqsput and amqsget: Sample programs to put and get messages, useful for testing.​
 
-Local Queue (TEST.QUEUE): Stores messages for applications to retrieve.
+###📚 Additional Resources
+[IBM MQ 9.4 Quick Start Guide](https://www.ibm.com/docs/en/ibm-mq/9.4.x?topic=mq-94-quick-start-guide)
 
-amqsput and amqsget: Sample programs to put and get messages, useful for testing.​
-Amazon Web Services, Inc.
-+1
-IBM - United States
-+1
-
-📚 Additional Resources
-IBM MQ 9.4 Quick Start Guide
-
-IBM MQ 9.4 Scenarios PDF
+[IBM MQ 9.4 Scenarios PDF](https://public.dhe.ibm.com/software/integration/wmq/docs/V9.4/PDFs/mq94.scenarios.pdf)
 
