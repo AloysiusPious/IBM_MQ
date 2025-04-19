@@ -1,4 +1,4 @@
-📘 IBM MQ Administration Practice — Day 1
+#📘 IBM MQ Administration Practice — Day 1
 🗓️ Day 1: Setting Up Your First Queue Manager
 🎯 Objective
 Establish a foundational IBM MQ environment by creating a queue manager, defining a local queue, and verifying message operations.​
