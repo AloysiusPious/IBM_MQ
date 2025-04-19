@@ -47,7 +47,8 @@ Select Add Local Queue Manager... from the context menu.
 
 Enter the name of the Queue Manager you created (e.g., TESTQM2) and click OK.
 
-3. Server-Connection Channel (SVRCONN) and Listener
+## 3. Server-Connection Channel (SVRCONN) and Listener
+
 By default, when you create a Queue Manager, IBM MQ does not automatically create a Server-Connection (SVRCONN) channel or a Listener. These components are essential for enabling remote connections to the Queue Manager.
 
 ⚙️ Default Behavior
@@ -96,7 +97,8 @@ Using Command Line:
 DEFINE LISTENER(LISTENER1) TRPTYPE(TCP) PORT(1414)
 START LISTENER(LISTENER1)
 ```
-4. Local vs. Remote Connections
+## 4. Local vs. Remote Connections
+
 Understanding the difference between local and remote connections is crucial for configuring MQ correctly.
 
 🖥️ Local Setup (MQ Explorer on the Same Server)
