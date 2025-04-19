@@ -35,9 +35,7 @@ crtmqm TESTQM2
 ```
 ▶️ Starting the Queue Manager
 After creation, start the Queue Manager using the strmqm command:
-
 ```bash
-
 strmqm TESTQM2
 ```
 ➕ Adding to MQ Explorer
@@ -45,7 +43,7 @@ To manage a command-line created Queue Manager within MQ Explorer:
 
 In MQ Explorer, right-click on Queue Managers.
 
-Select Add Local Queue Manager....
+Select Add Local Queue Manager... from the context menu.
 
 Enter the name of the Queue Manager you created (e.g., TESTQM2) and click OK.
 
@@ -59,17 +57,19 @@ New Queue Managers are created without a default SVRCONN channel or Listener con
 A Server-Connection channel defines how remote client applications or other MQ Explorer instances can connect to the Queue Manager.
 
 Using MQ Explorer:
+
 Expand the desired Queue Manager in the navigation pane.
 
 Right-click on the Channels folder.
 
-Select New → Server-Connection Channel....
+Select New → Server-Connection Channel...
 
 Provide a name (e.g., MY.SVRCONN), set Transport type to TCP, and specify a Port (default is 1414).
 
 Click OK.
 
 Using Command Line:
+
 ```bash
 
 DEFINE CHANNEL(MY.SVRCONN) CHLTYPE(SVRCONN) TRPTYPE(TCP) PORT(1414)
@@ -78,18 +78,21 @@ DEFINE CHANNEL(MY.SVRCONN) CHLTYPE(SVRCONN) TRPTYPE(TCP) PORT(1414)
 A Listener is a process that listens for incoming connection requests on a specific network port and associates them with the Queue Manager.
 
 Using MQ Explorer:
+
 Right-click on the desired Queue Manager.
 
-Select Start Listener....
+Select Start Listener...
 
-Choose an existing Listener or click New....
+Choose an existing Listener or click New...
 
-Provide a name (e.g., LISTENER1), choose TCP as transport type, and set the Port (e.g., 1414).
+Provide a name (e.g., LISTENER1), choose TCP as the transport type, and set the Port (e.g., 1414).
 
 Click OK to create and start the Listener.
 
 Using Command Line:
+
 ```bash
+
 DEFINE LISTENER(LISTENER1) TRPTYPE(TCP) PORT(1414)
 START LISTENER(LISTENER1)
 ```
@@ -97,14 +100,10 @@ START LISTENER(LISTENER1)
 Understanding the difference between local and remote connections is crucial for configuring MQ correctly.
 
 🖥️ Local Setup (MQ Explorer on the Same Server)
-If MQ Explorer is running on the same machine as the Queue Manager, you do not need a SVRCONN channel or Listener.
-
-Communication happens through Inter-Process Communication (IPC).
+If MQ Explorer is running on the same machine as the Queue Manager, you do not need a SVRCONN channel or Listener. Communication happens through Inter-Process Communication (IPC).
 
 🌐 Remote Setup (MQ Explorer on a Different Machine)
-You must configure a SVRCONN channel and a Listener on the MQ server.
-
-Remote MQ Explorer must be configured with the server's hostname/IP and port number.
+You must configure a SVRCONN channel and a Listener on the MQ server. Remote MQ Explorer must be configured with the server's hostname/IP and port number.
 
 ✅ Key Points to Remember
 SVRCONN channel and Listener are only required for remote connections.
@@ -112,6 +111,4 @@ SVRCONN channel and Listener are only required for remote connections.
 For local management, these are not necessary.
 
 Local Queue Managers can be created and managed directly without defining SVRCONN channels or Listeners.
-
-For remote management or client application access, SVRCONN and Listener are mandatory.
 
