@@ -26,7 +26,7 @@ runmqsc QM1
 DEFINE QLOCAL('TEST.QUEUE')
 END
 ```
-##4. Display the Queue
+## 4. Display the Queue
 ```bash
 runmqsc QM1
 DISPLAY QLOCAL('TEST.QUEUE')
