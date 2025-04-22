@@ -1,9 +1,9 @@
-#IBM MQ Administration Practice — Day 2
-##🗓️ Day 2: Configuring Remote Queue Communication Between Queue Managers
-🎯 Objective
+# IBM MQ Administration Practice — Day 2
+## 🗓️ Day 2: Configuring Remote Queue Communication Between Queue Managers
+## 🎯 Objective
 Establish communication between two queue managers (QM1 and QM2) on the same CentOS system. Configure the necessary objects to enable message transmission from a local queue on QM1 to a local queue on QM2.​
 
-🛠️ Prerequisites
+## 🛠️ Prerequisites
 IBM MQ 9.4.0.10 installed on CentOS
 
 User with mqm group privileges
@@ -12,7 +12,7 @@ Environment variables configured using setmqenv
 
 QM1 queue manager created (from Day 1)​
 
-✅ Steps
+## ✅ Steps
 1. Create the Second Queue Manager (QM2)
 bash
 Copy
