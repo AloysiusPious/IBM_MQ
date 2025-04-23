@@ -82,6 +82,7 @@ Remote Queue (REMOTE.QUEUE): An alias on QM1 that maps to the actual queue (DEST
 
 
 📚 Additional Resources
+
 (Working with Remote Queues - IBM Documentation)[https://www.ibm.com/docs/en/ibm-mq/9.2?topic=objects-working-remote-queues]
 
 (Putting Messages on Remote Queues - IBM Documentation)[https://www.ibm.com/docs/en/ibm-mq/9.2?topic=techniques-putting-messages-remote-queues]
