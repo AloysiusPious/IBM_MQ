@@ -17,6 +17,7 @@ QM1 queue manager created (from Day 1)​
 ```bash
 crtmqm -q QM2
 strmqm QM2
+```
 2. Define a Local Queue on QM2
 ```bash
 runmqsc QM2
