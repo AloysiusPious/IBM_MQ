@@ -12,6 +12,9 @@ Environment variables configured using setmqenv
 
 QM1 queue manager created (from Day 1)​
 
+<img width="471" alt="image" src="https://github.com/user-attachments/assets/902a82f1-48a4-4738-a9fc-ff45f16f858b" />
+
+
 ## ✅ Steps
 1. Create the Second Queue Manager (QM2)
 ```bash
