@@ -71,6 +71,14 @@ On QM2, retrieve the message:​
 ```bash
 amqsget DEST.QUEUE QM2
 ```
+| Component          | Purpose                                   |
+| ------------------ | ----------------------------------------- |
+| Remote Queue       | Points to `RNAME`, `RQMNAME`, and `XMITQ` |
+| Transmission Queue | Temporary storage for outbound messages   |
+| Sender Channel     | Defines connection (e.g., `QM1.TO.QM2`)   |
+| Receiver Channel   | On `QM2` to receive messages              |
+| Listener           | On `QM2` to accept TCP connections        |
+
 📘 Explanation
 Transmission Queue (QM2): A special local queue on QM1 that temporarily holds messages destined for QM2.
 
