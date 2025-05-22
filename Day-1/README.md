@@ -14,7 +14,19 @@ Environment variables configured using setmqenv​
 The -q flag only tells MQ to create a quiescing-capable queue manager (which is the default behavior anyway).
 ```bash
 crtmqm -q QM1
+crtmqm -ld /mqdata/logs/qm1 -md /mqdata/qmgrs/qm1 QM1
 ```
+Log files go to: /mqdata/qm1/log
+You can also control the data directory (where queues/config are stored) using -md:
+
+After Creation: Can You Move It?
+After creating the queue manager:
+
+❌ You cannot change the log directory via MQ commands.
+
+✅ You can recreate the queue manager with the desired path.
+
+Or move files manually (complex and risky — not recommended in prod without IBM support).
 
 ## 2. Start the Queue Manager
 ```bash
