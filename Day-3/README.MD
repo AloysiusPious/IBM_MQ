@@ -29,12 +29,14 @@ Define a new server-connection channel APP.SVRCONN:
 runmqsc QM1
 DEFINE CHANNEL('APP.SVRCONN') CHLTYPE(SVRCONN) TRPTYPE(TCP)
 END
+```
 3. Configure Channel Authentication (CHLAUTH) Rules
 Map connections from a specific IP address to the appuser user ID:
 ```bash
 runmqsc QM1
 SET CHLAUTH('APP.SVRCONN') TYPE(ADDRESSMAP) ADDRESS('192.168.1.100') MCAUSER('appuser')
 END
+```
 This rule ensures that any connection to APP.SVRCONN from IP 192.168.1.100 will run under the appuser identity.
 Eclipse
 
@@ -45,11 +47,13 @@ runmqsc QM1
 SET AUTHREC OBJTYPE(QMGR) PRINCIPAL('appuser') AUTHADD(CONNECT, INQ)
 SET AUTHREC PROFILE('APP.QUEUE') OBJTYPE(QUEUE) PRINCIPAL('appuser') AUTHADD(PUT, GET)
 END
+```
 Ensure that APP.QUEUE exists or create it:
 ```bash
 runmqsc QM1
 DEFINE QLOCAL('APP.QUEUE')
 END
+```
 5. Test the Configuration
 Attempt to connect to QM1 using the APP.SVRCONN channel from IP 192.168.1.100 and perform put/get operations on APP.QUEUE.
 Eclipse
@@ -61,6 +65,7 @@ Use the amqsputc and amqsgetc utilities for testing:
 ```bash
 amqsputc APP.QUEUE QM1
 amqsgetc APP.QUEUE QM1
+```
 Ensure that the operations succeed, confirming that the channel authentication and user authorizations are correctly configured.
 IBM
 
