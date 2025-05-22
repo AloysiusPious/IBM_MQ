@@ -80,8 +80,11 @@ amqsget DEST.QUEUE QM2
 | Listener           | On `QM2` to accept TCP connections        |
 
 How it works:
+
 Role	Channel Type	Start Requirement
+
 QM1 (Sender)	SDR	✅ Must be started manually
+
 QM2 (Receiver)	RCVR	🚫 No manual start needed, auto-starts when SDR connects
 
 📘 Explanation
