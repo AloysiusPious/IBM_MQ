@@ -1,15 +1,10 @@
-📘 IBM MQ Administration Practice — Day 3
-🗓️ Day 3: Implementing Channel Authentication and User Authorization
-🎯 Objective
+#📘 IBM MQ Administration Practice — Day 3
+##🗓️ Day 3: Implementing Channel Authentication and User Authorization
+#🎯 Objective
 Enhance the security of your IBM MQ environment by configuring channel authentication (CHLAUTH) rules and setting appropriate user authorizations.
 mqtechconference.com
-+7
-IBM
-+7
-Stack Overflow
-+7
 
-🛠️ Prerequisites
+#🛠️ Prerequisites
 IBM MQ 9.4.0.10 installed on CentOS
 
 User with mqm group privileges
@@ -18,15 +13,14 @@ Environment variables configured using setmqenv
 
 Queue manager QM1 created and running
 
-✅ Steps
+#✅ Steps
 1. Create a Non-Privileged User
 Create a new user appuser to be used for channel connections:
 
-bash
-Copy
-Edit
+bash```
 sudo useradd appuser
 sudo passwd appuser
+```
 Ensure appuser is not part of the mqm group to maintain least privilege.
 
 2. Create a Server-Connection Channel
