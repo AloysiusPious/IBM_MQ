@@ -32,6 +32,7 @@ runmqsc QM1
 DISPLAY QLOCAL('TEST.QUEUE')
 ```
 ## 5. Send a Test Message
+if /opt/mqm/samp/bin/amqsput path is not set in env variable then export it
 ```bash
 echo "Hello MQ" | amqsput TEST.QUEUE QM1
 ```
