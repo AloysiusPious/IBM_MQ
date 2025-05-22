@@ -79,7 +79,13 @@ amqsget DEST.QUEUE QM2
 | Receiver Channel   | On `QM2` to receive messages              |
 | Listener           | On `QM2` to accept TCP connections        |
 
+How it works:
+Role	Channel Type	Start Requirement
+QM1 (Sender)	SDR	✅ Must be started manually
+QM2 (Receiver)	RCVR	🚫 No manual start needed, auto-starts when SDR connects
+
 📘 Explanation
+
 Transmission Queue (QM2): A special local queue on QM1 that temporarily holds messages destined for QM2.
 
 Sender Channel (QM1.TO.QM2): Defines the communication path from QM1 to QM2.
@@ -88,10 +94,7 @@ Receiver Channel (QM1.TO.QM2): Corresponds to the sender channel on QM2, enablin
 
 Remote Queue (REMOTE.QUEUE): An alias on QM1 that maps to the actual queue (DEST.QUEUE) on QM2.​
 
-How it works:
-Role	Channel Type	Start Requirement
-QM1 (Sender)	SDR	✅ Must be started manually
-QM2 (Receiver)	RCVR	🚫 No manual start needed, auto-starts when SDR connects
+
 
 📚 Additional Resources
 
