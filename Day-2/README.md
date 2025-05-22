@@ -88,6 +88,10 @@ Receiver Channel (QM1.TO.QM2): Corresponds to the sender channel on QM2, enablin
 
 Remote Queue (REMOTE.QUEUE): An alias on QM1 that maps to the actual queue (DEST.QUEUE) on QM2.​
 
+How it works:
+Role	Channel Type	Start Requirement
+QM1 (Sender)	SDR	✅ Must be started manually
+QM2 (Receiver)	RCVR	🚫 No manual start needed, auto-starts when SDR connects
 
 📚 Additional Resources
 
