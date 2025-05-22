@@ -4,7 +4,7 @@
 Enhance the security of your IBM MQ environment by configuring channel authentication (CHLAUTH) rules and setting appropriate user authorizations.
 mqtechconference.com
 
-# 🛠️ Prerequisites
+## 🛠️ Prerequisites
 IBM MQ 9.4.0.10 installed on CentOS
 
 User with mqm group privileges
@@ -13,7 +13,7 @@ Environment variables configured using setmqenv
 
 Queue manager QM1 created and running
 
-# ✅ Steps
+## ✅ Steps
 1. Create a Non-Privileged User
 Create a new user appuser to be used for channel connections:
 
@@ -69,7 +69,7 @@ amqsgetc APP.QUEUE QM1
 Ensure that the operations succeed, confirming that the channel authentication and user authorizations are correctly configured.
 IBM
 
-# 📘 Explanation
+## 📘 Explanation
 CHLAUTH Rules: Channel authentication records (CHLAUTH) provide a mechanism to control access to channels based on various criteria such as IP address, user ID, and SSL/TLS credentials. 
 
 mqtechconference.com
@@ -80,7 +80,7 @@ MCAUSER: The MCAUSER attribute specifies the user ID under which the channel run
 Authorization Records: AUTHREC commands are used to grant or revoke permissions for users on various MQ objects like queues and the queue manager itself.
 Eclipse
 
-📚 Additional Resources
+## 📚 Additional Resources
 IBM MQ Channel Authorization
 
 Securing IBM MQ
