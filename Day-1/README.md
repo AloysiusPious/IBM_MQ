@@ -11,7 +11,7 @@ Environment variables configured using setmqenv​
 
 ### ✅ Steps
 ## 1. Create a Queue Manager
--q enables the queue manager to start automatically upon system boot.​
+The -q flag only tells MQ to create a quiescing-capable queue manager (which is the default behavior anyway).
 ```bash
 crtmqm -q QM1
 ```
