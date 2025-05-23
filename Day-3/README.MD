@@ -81,9 +81,9 @@ Authorization Records: AUTHREC commands are used to grant or revoke permissions 
 Eclipse
 
 ## 📚 Additional Resources
-IBM MQ Channel Authorization
+(IBM MQ Channel Authorization)  [https://www.ibm.com/docs/SSFKSJ_9.2.0/com.ibm.mq.sec.doc/q010710_.htm]
 
-Securing IBM MQ
+(Securing IBM MQ) [https://www.ibm.com/docs/SSFKSJ_9.2.0/com.ibm.mq.sec.doc/q009710_.html]
 
-MQ Channel Authentication Records (PDF)
+(MQ Channel Authentication Records) [https://www.mqtechconference.com/sessions_v2014/CHLAUTH_in_V8.pdf]
 
