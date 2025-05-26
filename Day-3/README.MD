@@ -55,10 +55,6 @@ END
 ```
 5. Test the Configuration
 Attempt to connect to QM1 using the APP.SVRCONN channel from IP 192.168.1.100 and perform put/get operations on APP.QUEUE.
-Eclipse
-+1
-IBM
-+1
 
 Use the amqsputc and amqsgetc utilities for testing:
 ```bash
@@ -71,8 +67,7 @@ IBM
 ## 📘 Explanation
 CHLAUTH Rules: Channel authentication records (CHLAUTH) provide a mechanism to control access to channels based on various criteria such as IP address, user ID, and SSL/TLS credentials. 
 
-mqtechconference.com
-+6
+[mqtechconference.com]
 
 MCAUSER: The MCAUSER attribute specifies the user ID under which the channel runs. Mapping connections to a specific MCAUSER ensures that the channel operates with the intended permissions.
 
