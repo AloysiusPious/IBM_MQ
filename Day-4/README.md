@@ -142,5 +142,7 @@ SSLCIPH: Defines the cipher specification for SSL/TLS encryption; must match on 
 
 ## 📚 Additional Resources
 (IBM MQ Security Overview) [https://www.ibm.com/docs/en/ibm-mq/9.2?topic=overview-security]
+
 (Configuring SSL/TLS on IBM MQ Channels) [https://www.ibm.com/docs/en/ibm-mq/9.2?topic=channels-configuring-ssl-tls]
+
 (IBM MQ Cipher Specifications) [https://www.ibm.com/docs/en/ibm-mq/9.2?topic=reference-cipher-specifications]
