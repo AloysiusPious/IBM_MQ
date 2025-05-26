@@ -38,7 +38,6 @@ SET CHLAUTH('APP.SVRCONN') TYPE(ADDRESSMAP) ADDRESS('192.168.1.100') MCAUSER('ap
 END
 ```
 This rule ensures that any connection to APP.SVRCONN from IP 192.168.1.100 will run under the appuser identity.
-Eclipse
 
 4. Set User Authorizations
 Grant appuser the necessary permissions:
